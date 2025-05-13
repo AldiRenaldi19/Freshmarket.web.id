@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <div class="container">
@@ -187,6 +187,8 @@
           const phone = document.getElementById("phone");
           const password = document.getElementById("password");
           const confirmPassword = document.getElementById("confirm-password");
+          const errorMessages = document.querySelectorAll(".error-message");
+          const registerButton = document.querySelector(".register-button");
 
           // Reset error messages
           document
@@ -224,6 +226,18 @@
           }
 
           return isValid;
+        }
+        if (registerButton) {
+          registerButton.addEventListener("click", function () {
+            if (validateForm()) {
+              registerButton.classList.add("loading");
+              href = "/login";
+              setTimeout(() => {
+                registerButton.classList.remove("loading");
+            } else {
+              registerButton.classList.remove("loading");
+            }
+          });
         }
 
         function showError(message) {
@@ -265,7 +279,23 @@
             if (registeredUsers.some(user => user.email === formData.email)) {
               showError("Email sudah terdaftar. Silakan gunakan email lain.");
               return;
+            } else {
+              // Jika tidak ada user terdaftar, simpan user baru
+              registeredUsers.push(formData);
+              localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+              window.location.href = "/login";
+              showError("Pendaftaran berhasil! Silakan login.");
             }
+            // Cek apakah user sudah terdaftar
+            if (registeredUsers.some(user => user.email === formData.email)) {
+              showError("Email sudah terdaftar. Silakan gunakan email lain.");
+              return;
+            } else {
+              // Simpan user baru ke localStorage
+              localStorage.setItem("user", JSON.stringify(formData));
+            }
+            // Simpan data user ke localStorage
+            localStorage.setItem("user", JSON.stringify(formData));
             
             // Tambahkan user baru ke daftar
             registeredUsers.push(formData);

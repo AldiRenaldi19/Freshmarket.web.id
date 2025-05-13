@@ -12,6 +12,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("registeredUsers", JSON.stringify([defaultAdmin]));
   }
+  // Inisialisasi data user jika belum ada
+  if (!localStorage.getItem("users")) {
+    const defaultUser = {
+      name: "User",
+      email: "user@user.com",
+      password: "user12345",
+      isAdmin: false,
+      createdAt: new Date().toISOString(),
+    };
+    localStorage.setItem("users", JSON.stringify([defaultUser]));
+  }
+  // Inisialisasi data cart jika belum ada
+  if (!localStorage.getItem("cart")) {
+    localStorage.setItem("cart", JSON.stringify([]));
+  }
+  // Inisialisasi data wishlist jika belum ada
+  if (!localStorage.getItem("wishlist")) {
+    localStorage.setItem("wishlist", JSON.stringify([]));
+  }
+  // Inisialisasi data reviews jika belum ada
+  if (!localStorage.getItem("reviews")) {
+    localStorage.setItem("reviews", JSON.stringify([]));
+  }
+  // Inisialisasi data transactions jika belum ada
+  if (!localStorage.getItem("transactions")) {
+    localStorage.setItem("transactions", JSON.stringify([]));
+  }
+  // Inisialisasi data notifications jika belum ada
+  if (!localStorage.getItem("notifications")) {
+    localStorage.setItem("notifications", JSON.stringify([]));
+  }
 
   // Inisialisasi data orders jika belum ada
   if (!localStorage.getItem("orders")) {

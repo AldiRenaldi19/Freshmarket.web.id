@@ -58,6 +58,14 @@
       <div class="our-team">
         <h2>Tim Kami</h2>
         <!-- Informasi tim -->
+        <div class="team-member">
+          <img
+            src="/assets/images/team-member1.jpg"
+            alt="Anggota Tim 1"
+            class="team-member-image"
+          />
+          <h3>Nama Anggota 1</h3>
+          <p>Deskripsi Anggota 1</p>
       </div>
     </div>
   </body>

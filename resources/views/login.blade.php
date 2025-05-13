@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       * {
         margin: 0;
@@ -325,6 +325,94 @@
             <span class="loading-spinner"></span>
           </button>
           <div id="loginError" class="error-message" style="margin-top: 10px;"></div>
+          </div>
+          <div class="form-group">
+            <label for="rememberMe">
+              <input type="checkbox" id="rememberMe" />
+              Ingat saya
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="login-btn-google">
+              <i class="fab fa-google"></i>
+              Masuk dengan Google
+              <style>
+                .login-btn-google {
+                  background-color: #4285f4;
+                  color: white;
+                  border: none;
+                  padding: 10px 20px;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                }
+
+                .login-btn-google i {
+                  margin-right: 8px;
+                }
+                .login-btn-google:hover {
+                  background-color: #357ae8;
+                }
+                .login-btn-google:active {
+                  background-color: #3367d6;
+                }
+                .login-btn-google:disabled {
+                  background-color: #ccc;
+                  cursor: not-allowed;
+                }
+                .login-btn-google.loading {
+                  background-color: #ccc;
+                  cursor: not-allowed;
+                }
+                .login-btn-google.loading .btn-text {
+                  visibility: hidden;
+                }
+                .login-btn-google.loading .loading-spinner {
+                  display: block;
+                }
+                .login-btn-google .loading-spinner {
+                  display: none;
+                }
+                .login-btn-google.loading .btn-text {
+                  visibility: hidden;
+                }
+                .login-btn-google.loading .loading-spinner {
+                  display: block;
+                }
+                .login-btn-google .loading-spinner {
+                  display: none;
+                  width: 20px;
+                  height: 20px;
+                  border: 2px solid #fff;
+                  border-top: 2px solid transparent;
+                  border-radius: 50%;
+                  animation: spin 1s linear infinite;
+                  position: absolute;
+                  right: 10px;
+                }
+                @keyframes spin {
+                  0% {
+                    transform: rotate(0deg);
+                  }
+                  100% {
+                    transform: rotate(360deg);
+                  }
+                }
+                </style>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    const loginBtnGoogle = document.querySelector(".login-btn-google");
+                    loginBtnGoogle.addEventListener("click", function () {
+                      loginBtnGoogle.classList.add("loading");
+                      setTimeout(() => {
+                        loginBtnGoogle.classList.remove("loading");
+                      }, 2000);
+                    });
+                  });
+                </script>
+            </button>
+          </div>
           <div class="options">
             <div class="forgot-password">
               <a href="#">Lupa kata sandi?</a>
@@ -337,8 +425,8 @@
       </div>
     </div>
 
-    <script src="../js/init.js"></script>
-    <script src="../js/auth.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/auth.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Fungsi untuk mengecek apakah halaman saat ini adalah halaman login
@@ -417,6 +505,44 @@
                 };
                 localStorage.setItem('user', JSON.stringify(adminData));
                 window.location.replace('/pages/admin/dashboard');
+                return;
+              }
+              // cek user login
+              if (email === 'user@user.com' && password === 'user123') {
+                const userData = {
+                  name: 'User',
+                  email: email,
+                  isAdmin: false,
+                  lastLogin: new Date().toISOString()
+                };
+                localStorage.setItem('user', JSON.stringify(userData));
+                window.location.replace('/pages/user/dashboard');
+                return;
+              } else if (email === '' && password === '') {
+                showError('Email dan kata sandi tidak boleh kosong');
+                hideLoading();
+                return;
+              }
+              // Cek user terdaftar
+              const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+              const registeredUser = registeredUsers.find(user => user.email === email);
+              if (registeredUser) {
+                if (registeredUser.password !== password) {
+                  showError('Kata sandi salah');
+                  hideLoading();
+                  return;
+                }
+                
+                const userData = {
+                  name: registeredUser.name,
+                  email: registeredUser.email,
+                  phone: registeredUser.phone,
+                  isAdmin: false,
+                  lastLogin: new Date().toISOString()
+                };
+                
+                localStorage.setItem('user', JSON.stringify(userData));
+                window.location.replace('/pages/user/dashboard');
                 return;
               }
               

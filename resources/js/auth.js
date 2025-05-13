@@ -134,20 +134,24 @@ function loadUserSidebar() {
             </div>
             <ul class="menu">
                 <li class="${
-                  currentPath.includes("/dashboard") ? "active" : ""
+                  currentPath.includes("/pages/user/dashboard") ? "active" : ""
                 }">
-                    <a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    <a href="/pages/user/dashboard"><i class="fas fa-home"></i> Dashboard</a>
                 </li>
                 <li class="${
-                  currentPath.includes("/products") ? "active" : ""
+                  currentPath.includes("/pages/user/products") ? "active" : ""
                 }">
-                    <a href="/products"><i class="fas fa-shopping-basket"></i> Produk</a>
+                    <a href="/pages/user/products"><i class="fas fa-shopping-basket"></i> Produk</a>
                 </li>
-                <li class="${currentPath.includes("/orders") ? "active" : ""}">
-                    <a href="/orders"><i class="fas fa-shopping-bag"></i> Pesanan Saya</a>
+                <li class="${
+                  currentPath.includes("/pages/user/orders") ? "active" : ""
+                }">
+                    <a href="/pages/user/orders"><i class="fas fa-shopping-bag"></i> Pesanan Saya</a>
                 </li>
-                <li class="${currentPath.includes("/profile") ? "active" : ""}">
-                    <a href="/profile"><i class="fas fa-user"></i> Profil</a>
+                <li class="${
+                  currentPath.includes("/pages/user/profile") ? "active" : ""
+                }">
+                    <a href="/pages/user/profile"><i class="fas fa-user"></i> Profil</a>
                 </li>
                 <li class="${
                   currentPath.includes("/pages/user/wishlist") ? "active" : ""
@@ -203,7 +207,7 @@ window.addEventListener("resize", function () {
 
 // Fungsi yang konsisten untuk kembali ke homepage
 function goToHomePage() {
-  window.location.href = "/";
+  window.location.href = "/home";
 }
 
 // Tambahkan ke setiap halaman yang membutuhkan auth

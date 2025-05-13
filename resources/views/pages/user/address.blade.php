@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <!-- Gunakan navbar yang sama -->
@@ -68,8 +68,8 @@
       </div>
     </div>
 
-    <script src="../../js/init.js"></script>
-    <script src="../../js/auth.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/auth.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (!checkUserAccess()) return;

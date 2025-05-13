@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <style>
       * {
         margin: 0;
@@ -329,7 +329,7 @@
     <nav class="navbar">
       <div class="logo-container">
         <img
-          src="../assets/images/logo.png"
+          src="/assets/images/logo.png"
           alt="Fresh Market Logo"
           style="width: 40px; height: 40px; object-fit: contain"
         />
@@ -337,7 +337,7 @@
       </div>
 
       <div class="nav-links">
-        <a href="/" class="nav-link">Beranda</a>
+        <a href="/home" class="nav-link">Beranda</a>
         <a href="/products" class="nav-link">Produk</a>
         <a href="/about" class="nav-link">Tentang Kami</a>
         <a href="/contact" class="nav-link">Kontak</a>

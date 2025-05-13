@@ -12,35 +12,41 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="admin-container">
       <div class="admin-sidebar">
         <div class="admin-logo">
-          <img src="../assets/images/logo.png" alt="Fresh Market Logo" />
+          <img src="/assets/images/logo.png" alt="Fresh Market Logo" />
+          <style>
+            .admin-logo img {
+              width: 10%;
+              height: 10%;
+            }
+          </style>
           <h2>Admin Panel</h2>
         </div>
         <ul class="admin-menu">
           <li>
-            <a href="dashboard.html"
+            <a href="/pages/admin/dashboard"
               ><i class="fas fa-tachometer-alt"></i> Dashboard</a
             >
           </li>
           <li>
-            <a href="products.html"><i class="fas fa-box"></i> Produk</a>
+            <a href="/pages/admin/products"><i class="fas fa-box"></i> Produk</a>
           </li>
           <li>
-            <a href="orders.html"
+            <a href="/pages/admin/orders"
               ><i class="fas fa-shopping-cart"></i> Pesanan</a
             >
           </li>
           <li>
-            <a href="users.html"><i class="fas fa-users"></i> Pengguna</a>
+            <a href="/pages/admin/users"><i class="fas fa-users"></i> Pengguna</a>
           </li>
           <li class="active">
-            <a href="reports.html"><i class="fas fa-chart-bar"></i> Laporan</a>
+            <a href="/pages/admin/reports"><i class="fas fa-chart-bar"></i> Laporan</a>
           </li>
           <li>
             <a href="#" onclick="logout()"
@@ -110,14 +116,14 @@
       </div>
     </div>
 
-    <script src="../js/init.js"></script>
+    <script src="/js/init.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Cek autentikasi admin
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user || !user.isAdmin) {
           alert("Anda tidak memiliki akses ke halaman admin!");
-          window.location.href = "../pages/login.html";
+          window.location.href = "/login";
           return;
         }
 
@@ -279,7 +285,7 @@
 
       function logout() {
         localStorage.removeItem("user");
-        window.location.href = "../pages/login.html";
+        window.location.href = "/login";
       }
 
       function exportToExcel() {

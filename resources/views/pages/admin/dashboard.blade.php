@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <div class="admin-container">
@@ -27,17 +27,13 @@
         </div>
         <ul class="admin-menu">
           <li class="active">
-            <a href="/dashboard"
-              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
-            >
+            <a href="/pages/admin/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
           </li>
           <li>
             <a href="/pages/admin/products"><i class="fas fa-box"></i> Produk</a>
           </li>
           <li>
-            <a href="/pages/admin/orders"
-              ><i class="fas fa-shopping-cart"></i> Pesanan</a
-            >
+            <a href="/pages/admin/orders"><i class="fas fa-shopping-cart"></i> Pesanan</a>
           </li>
           <li>
             <a href="/pages/admin/users"><i class="fas fa-users"></i> Pengguna</a>
@@ -46,9 +42,7 @@
             <a href="/pages/admin/reports"><i class="fas fa-chart-bar"></i> Laporan</a>
           </li>
           <li>
-            <a href="#" onclick="logout()"
-              ><i class="fas fa-sign-out-alt"></i> Keluar</a
-            >
+            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Keluar</a>
           </li>
         </ul>
       </div>
@@ -371,7 +365,7 @@
       }
     </style>
 
-    <script src="../js/init.js"></script>
+    <script src="/js/init.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (!checkAdminAccess()) return;

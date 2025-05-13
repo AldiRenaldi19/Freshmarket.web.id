@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <div class="dashboard-container">
@@ -21,8 +21,8 @@
       </div>
     </div>
 
-    <script src="../../js/init.js"></script>
-    <script src="../../js/auth.js"></script>
+    <script src="/js/init.js"></script>
+    <script src="/js/auth.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (!checkUserAccess()) return;
@@ -71,15 +71,15 @@
             <div class="quick-actions">
                 <h2>Aksi Cepat</h2>
                 <div class="actions-container">
-                    <div class="action-card" onclick="window.location.href='products.html'">
+                    <div class="action-card" onclick="window.location.href='products'">
                         <i class="fas fa-shopping-basket"></i>
                         <span>Lihat Produk</span>
                     </div>
-                    <div class="action-card" onclick="window.location.href='orders.html'">
+                    <div class="action-card" onclick="window.location.href='orders'">
                         <i class="fas fa-shopping-bag"></i>
                         <span>Pesanan Aktif</span>
                     </div>
-                    <div class="action-card" onclick="window.location.href='wishlist.html'">
+                    <div class="action-card" onclick="window.location.href='wishlist'">
                         <i class="fas fa-heart"></i>
                         <span>Wishlist</span>
                     </div>

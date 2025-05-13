@@ -28,7 +28,7 @@
         <button
           id="checkout-button"
           class="primary-button"
-          onclick="window.location.href='checkout.html'"
+          onclick="window.location.href='/checkout'"
         >
           Lanjut ke Pembayaran
         </button>

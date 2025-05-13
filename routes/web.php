@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Router For pages
 Route::get('/', function () {
     return view('home');
 });
@@ -23,6 +24,9 @@ Route::get('/register', function () {
 Route::get('/products', function () {
     return view('products');
 });
+Route::get('/checkout', function () {
+    return view('checkout');
+});
 
 
 // Route for admin pages
@@ -41,6 +45,8 @@ Route::get('pages/admin/users', function () {
 Route::get('pages/admin/reports', function () {
     return view('pages.admin.reports');
 });
+
+
 // Route for user pages
 Route::get('pages/user/dashboard', function () {
     return view('pages.user.dashboard');

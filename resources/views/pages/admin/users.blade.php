@@ -12,26 +12,32 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <div class="admin-container">
       <div class="admin-sidebar">
         <div class="admin-logo">
-          <img src="../assets/images/logo.png" alt="Fresh Market Logo" />
+          <img src="/assets/images/logo.png" alt="Fresh Market Logo" />
+          <style>
+            .admin-logo img {
+              width: 10%;
+              height: 10%;
+            }
+          </style>
           <h2>Admin Panel</h2>
         </div>
         <ul class="admin-menu">
           <li>
-            <a href="dashboard.html"
+            <a href="/pages/admin/dashboard"
               ><i class="fas fa-tachometer-alt"></i> Dashboard</a
             >
           </li>
           <li>
-            <a href="/products"><i class="fas fa-box"></i> Produk</a>
+            <a href="/pages/admin/products"><i class="fas fa-box"></i> Produk</a>
           </li>
           <li>
-            <a href="/orders"
+            <a href="/pages/admin/orders"
               ><i class="fas fa-shopping-cart"></i> Pesanan</a
             >
           </li>
@@ -39,7 +45,7 @@
             <a href="users.html"><i class="fas fa-users"></i> Pengguna</a>
           </li>
           <li>
-            <a href="/reports"><i class="fas fa-chart-bar"></i> Laporan</a>
+            <a href="/pages/admin/reports"><i class="fas fa-chart-bar"></i> Laporan</a>
           </li>
           <li>
             <a href="#" onclick="logout()"
@@ -68,7 +74,7 @@
       </div>
     </div>
 
-    <script src="../js/init.js"></script>
+    <script src="/js/init.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Cek autentikasi admin

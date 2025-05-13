@@ -43,14 +43,14 @@
       </div>
     </div>
 
-    <script src="../js/init.js"></script>
+    <script src="/js/init.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Cek autentikasi admin
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user || !user.isAdmin) {
           alert("Anda tidak memiliki akses ke halaman admin!");
-          window.location.href = "../pages/login.html";
+          window.location.href = "/login";
           return;
         }
 

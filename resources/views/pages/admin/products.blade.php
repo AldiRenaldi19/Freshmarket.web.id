@@ -67,6 +67,9 @@
               <option value="Sayuran">Sayuran</option>
               <option value="Buah">Buah</option>
               <option value="Rempah">Rempah</option>
+              <option value="Bumbu">Bumbu</option>
+              <option value="Daging">Daging</option>
+              <option value="Ikan">Ikan</option>
             </select>
           </div>
           <div class="form-group">
@@ -99,6 +102,16 @@
             />
           </div>
           <div class="form-group">
+            <label for="productImageUpload">Unggah Gambar</label>
+            <input
+              type="file"
+              id="productImageUpload"
+              class="form-control"
+              accept="image/*"
+              onchange="document.getElementById('productImage').value = this.value.split('\\').pop()"
+            />
+          </div>
+          <div class="form-group">
             <label for="productDescription">Deskripsi</label>
             <textarea
               id="productDescription"
@@ -120,14 +133,14 @@
       </div>
     </div>
 
-    <script src="../js/init.js"></script>
+    <script src="/js/init.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Cek autentikasi admin
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user || !user.isAdmin) {
           alert("Anda tidak memiliki akses ke halaman admin!");
-          window.location.href = "../pages/login.html";
+          window.location.href = "/login";
           return;
         }
 
@@ -168,8 +181,8 @@
                     <img src="${
                       product.image || "../assets/images/default-product.png"
                     }" 
-                         alt="${product.name}"
-                         onerror="this.src='../assets/images/default-product.png'">
+                        alt="${product.name}"
+                        onerror="this.src='../assets/images/default-product.png'">
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p class="category">${product.category}</p>
