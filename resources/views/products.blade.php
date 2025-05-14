@@ -337,7 +337,7 @@
       </div>
 
       <div class="nav-links">
-        <a href="/home" class="nav-link">Beranda</a>
+        <a href="/" class="nav-link">Beranda</a>
         <a href="/products" class="nav-link">Produk</a>
         <a href="/about" class="nav-link">Tentang Kami</a>
         <a href="/contact" class="nav-link">Kontak</a>

@@ -33,6 +33,12 @@
         height: 100vh;
         padding: 20px;
         animation: slowZoom 20s infinite alternate;
+        overflow: hidden;
+        color: #fff;
+        text-align: left;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
 
       .login-container {
@@ -47,6 +53,7 @@
         transition: transform 0.3s ease;
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.5s ease-in-out;
       }
 
       .login-container:hover {
@@ -60,14 +67,14 @@
       }
 
       .logo h1 {
-        color: #2e7d32;
+        color: #fff;
         font-size: 2.2rem;
         margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 2px 4px rgba(12, 10, 10, 0.1);
       }
 
       .logo p {
-        color: #666;
+        color: #fff;
         font-size: 0.9rem;
       }
 
@@ -79,7 +86,7 @@
       label {
         display: block;
         margin-bottom: 0.5rem;
-        color: #333;
+        color: #fff;
         font-size: 0.9rem;
         font-weight: 500;
       }
@@ -95,7 +102,7 @@
       }
 
       input:focus {
-        border-color: #2e7d32;
+        border-color: #fff;
         outline: none;
         box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
       }
@@ -116,7 +123,7 @@
 
       .login-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        box-shadow: 0 5px 15px rgba(63, 179, 69, 0.3);
       }
 
       .login-btn:active {
@@ -134,14 +141,14 @@
       }
 
       .forgot-password a {
-        color: #2e7d32;
+        color: #fff;
         text-decoration: none;
         font-size: 0.9rem;
         transition: color 0.3s ease;
       }
 
       .forgot-password a:hover {
-        color: #1b5e20;
+        color: #fff;
         text-decoration: underline;
       }
 
@@ -203,10 +210,17 @@
       @media (max-width: 480px) {
         .login-container {
           padding: 2rem 1.5rem;
+          width: 90%;
+          max-width: 100%;
+          margin: 0 auto;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+          animation: fadeIn 0.5s ease-in-out;
         }
 
         .logo h1 {
           font-size: 1.8rem;
+          margin-bottom: 1rem;
         }
       }
 
