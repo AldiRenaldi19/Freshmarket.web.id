@@ -21,6 +21,26 @@ function checkAdminAuth() {
   }
   return user;
 }
+function checkUserAuth() {
+  const user = checkAuth();
+  if (!user) {
+    alert("Silakan login terlebih dahulu");
+    window.location.href = "/login";
+    return null;
+  }
+  return user;
+}
+function showNotification(message) {
+  const notification = document.createElement("div");
+  notification.className = "notification";
+  notification.innerText = message;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
+}
 
 // Fungsi untuk mengecek sesi login
 function checkSession() {
@@ -207,7 +227,7 @@ window.addEventListener("resize", function () {
 
 // Fungsi yang konsisten untuk kembali ke homepage
 function goToHomePage() {
-  window.location.href = "/home";
+  window.location.href = "/";
 }
 
 // Tambahkan ke setiap halaman yang membutuhkan auth

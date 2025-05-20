@@ -1,6 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+Route::view('/login', 'login')->name('login');
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        return redirect('/dashboard');
+    }
+
+    return redirect()->route('login')->with('error', 'Email atau kata sandi salah!');
+})->name('do.login');
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
 // Router For pages
 Route::get('/', function () {
