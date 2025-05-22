@@ -10,11 +10,12 @@ Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-        return redirect('/dashboard');
+        return redirect('/dasboard');
     }
 
     return redirect()->route('login')->with('error', 'Email atau kata sandi salah!');
 })->name('do.login');
+
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/login');
@@ -33,9 +34,6 @@ Route::get('/cart', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/login', function () {
-    return view('login');
-});
 Route::get('/register', function () {
     return view('register');
 });
@@ -48,7 +46,7 @@ Route::get('/checkout', function () {
 
 
 // Route for admin pages
-Route::get('pages/admin/dashboard', function () {
+Route::get('pages/admin/dasboard', function () {
     return view('pages.admin.dasboard');
 });
 Route::get('pages/admin/products', function () {
@@ -66,7 +64,7 @@ Route::get('pages/admin/reports', function () {
 
 
 // Route for user pages
-Route::get('pages/user/dashboard', function () {
+Route::get('pages/user/dasboard', function () {
     return view('pages.user.dasboard');
 });
 Route::get('pages/user/products', function () {
