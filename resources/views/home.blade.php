@@ -1,559 +1,364 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fresh Market - Sayuran Segar Langsung dari Petani</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <meta
-      name="description"
-      content="Fresh Market - Toko sayuran segar online terpercaya. Belanja sayuran organik berkualitas langsung dari petani lokal."
-    />
-    <meta
-      name="keywords"
-      content="sayuran segar, sayur organik, toko sayur online, fresh market"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta
-      property="og:title"
-      content="Fresh Market - Sayuran Segar Langsung dari Petani"
-    />
-    <meta
-      property="og:description"
-      content="Belanja sayuran segar berkualitas dengan harga terbaik"
-    />
-    <meta property="og:image" content="assets/images/fresh-market-banner.jpg" />
-    <link rel="canonical" href="https://freshmarket.com" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fresh Market - Sayuran Segar Langsung dari Petani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-      /* Navbar Styles */
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 1rem 5%;
+    body {
+      line-height: 1.6;
+    }
+
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5%; background: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .logo {
+      font-weight: 700; font-size: 1.3rem; color: #2e7d32;
+    }
+
+    .search-container,
+    .nav-links,
+    .auth-buttons {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex; flex-direction: column; gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px; height: 3px; background: #2e7d32;
+    }
+
+    .nav-mobile {
+      position: fixed;
+      top: 65px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      flex-direction: column;
+      display: none;
+      padding: 1rem;
+      gap: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .nav-mobile a {
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      background: #f4f4f4;
+      border-radius: 5px;
+      color: #333;
+      display: block;
+    }
+
+    .nav-mobile a:hover {
+      background: #2e7d32;
+      color: #fff;
+    }
+
+    .hero {
+      margin-top: 65px;
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(46,125,50,0.6)),
+        url('https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 100%;
+    }
+
+    .hero-content h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-right: 1rem;
+      background: #2e7d32;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .cta-btn:hover {
+      background: #1b5e20;
+    }
+
+    .features {
+      padding: 2rem 5%;
+      background: #f9f9f9;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+      color: #2e7d32;
+      font-size: 1.8rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-card img {
+      width: 60px; height: 60px; margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .cart-link .fa-shopping-cart {
+      margin-right: 5px;
+    }
+
+    .cart-count {
+      background: #2e7d32;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    @media (min-width: 768px) {
+      .hamburger { display: none; }
+      .search-container,
+      .nav-links,
+      .auth-buttons {
         display: flex;
-        justify-content: space-between;
+        gap: 1.5rem;
         align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
       }
 
-      .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #2e7d32;
-      }
-
-      .search-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .search-container input[type="text"] {
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      .search-container button {
-        padding: 0.5rem 1rem;
-        border: none;
-        background: #2e7d32;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
-
-      .nav-links a {
+      .nav-links a,
+      .auth-buttons a {
         text-decoration: none;
         color: #333;
         font-weight: 500;
-        transition: color 0.3s;
       }
 
-      .nav-links a:hover {
+      .nav-links a:hover,
+      .auth-buttons a:hover {
         color: #2e7d32;
-      }
-
-      .auth-buttons {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .auth-btn {
-        padding: 8px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-
-      .auth-btn.login {
-        color: #2e7d32;
-        border: 1px solid #2e7d32;
-      }
-
-      .auth-btn.login:hover {
-        background: #2e7d32;
-        color: white;
-      }
-
-      .auth-btn.register {
-        background: #2e7d32;
-        color: white;
-      }
-
-      .auth-btn.register:hover {
-        background: #1b5e20;
-      }
-
-      /* Hero Section */
-      .hero {
-        height: 100vh;
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(46, 125, 50, 0.7)),
-          url("https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&q=80");
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        align-items: center;
-        padding: 0 5%;
-        color: white;
-      }
-
-      .hero-content {
-        max-width: 600px;
-      }
-
-      .hero-content h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-      }
-
-      .hero-content p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        line-height: 1.6;
-      }
-
-      .cta-btn {
-        display: inline-block;
-        padding: 1rem 2.5rem;
-        background: #2e7d32;
-        color: white;
-        text-decoration: none;
-        border-radius: 30px;
-        font-weight: 600;
-        transition: all 0.3s;
-      }
-
-      .cta-btn:hover {
-        background: #1b5e20;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Features Section */
-      .features {
-        padding: 5rem 5%;
-        background: #f9f9f9;
-      }
-
-      .section-title {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .section-title h2 {
-        color: #2e7d32;
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
       }
 
       .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 0 5%;
+        grid-template-columns: repeat(3, 1fr);
       }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="assets/images/logo.png" alt="Fresh Market Logo" style="width: 40px; height: 40px;" />
+      <div class="logo">Fresh Market</div>
+    </div>
 
-      .feature-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        text-align: center;
-        transition: transform 0.3s;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
+    <div class="search-container">
+      <input type="text" placeholder="Cari sayuran..." style="padding: 5px; border-radius: 5px;" />
+      <button style="padding: 5px 10px; background: #2e7d32; color: #fff; border: none; border-radius: 5px;">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
 
-      .feature-card:hover {
-        transform: translateY(-10px);
-      }
+    <div class="nav-links">
+      <a href="/">Beranda</a>
+      <a href="/products">Produk</a>
+      <a href="/about">Tentang Kami</a>
+      <a href="/contact">Kontak</a>
+      <a href="/cart" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        Keranjang <span class="cart-count">0</span>
+      </a>
+    </div>
 
-      .feature-card img {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 1.5rem;
-      }
+    <div class="auth-buttons">
+      <a href="/login">Masuk</a>
+      <a href="/register" style="background: #2e7d32; color: #fff; padding: 5px 10px; border-radius: 5px;">Daftar</a>
+    </div>
 
-      .feature-card h3 {
-        color: #2e7d32;
-        margin-bottom: 1rem;
-      }
+    <div class="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .nav-links {
-          position: fixed;
-          top: 60px;
-          left: -100%;
-          width: 100%;
-          background: white;
-          padding: 1rem;
-          transition: 0.3s;
-        }
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="/">Beranda</a>
+    <a href="/products">Produk</a>
+    <a href="/about">Tentang</a>
+    <a href="/contact">Kontak</a>
+    <a href="/cart" class="cart-link">
+      <i class="fas fa-shopping-cart"></i>
+      Keranjang <span class="cart-count">0</span>
+    </a>
+    <a href="/login">Masuk</a>
+    <a href="/register">Daftar</a>
+  </div>
 
-        .nav-links.active {
-          left: 0;
-        }
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Sayuran Segar Langsung dari Petani ke Meja Anda</h1>
+      <p>Nikmati sayuran organik berkualitas tinggi yang dipetik langsung dari kebun kami.</p>
+      <a href="/products" class="cta-btn">Belanja Sekarang</a>
+      <a href="/products" class="cta-btn" style="background:#fff; color:#2e7d32;">Lihat Produk</a>
+    </div>
+  </section>
 
-        .hamburger-menu {
-          display: block;
-          cursor: pointer;
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          z-index: 1001;
-          background: white;
-          padding: 10px;
-          border-radius: 50%;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s;
-          transform: rotate(0deg);
-          justify-content: center;
-          align-items: center;
-          width: 50px;
-          height: 50px;
-          display: flex;
-        }
-        .hamburger-menu span {
-          display: block;
-          width: 25px;
-          height: 3px;
-          background: #2e7d32;
-          margin: 4px 0;
-          transition: transform 0.3s;
-        }
-        .nav-links.mobile {
-          position: fixed;
-          top: 60px;
-          left: 0;
-          width: 100%;
-          height: calc(100vh - 60px);
-          background: white;
-          flex-direction: column;
-          padding: 1rem;
-          gap: 1rem;
-          overflow-y: auto;
-          z-index: 1000;
-          transform: translateY(-100%);
-          transition: transform 0.3s;
-          font-weight: 500;
-        }
-        .nav-links.mobile a {
-          padding: 1rem;
-          text-align: center;
-          background: #f9f9f9;
-          border-radius: 5px;
-        }
-        .nav-links.mobile a:hover {
-          background: #2e7d32;
-          color: white;
-        }
-        .nav-links.mobile a.active {
-          background: #2e7d32;
-          color: white;
-        }
-        .hamburger-menu.active span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger-menu.active span:nth-child(2) {
-          opacity: 0;
-        }
-        .hamburger-menu.active span:nth-child(3) {
-          transform: rotate(-45deg) translate(5px, -5px);
-        }
-        .hamburger-menu.active {
-          transform: rotate(90deg);
-        }
-        .hamburger-menu i {
-          font-size: 2rem;
-          color: #2e7d32;
-        }
-
-        .search-container {
-          width: 100%;
-          margin: 1rem 0;
-        }
-
-        .auth-buttons {
-          flex-direction: column;
-          width: 100%;
-          gap: 5px;
-          margin-top: 10px;
-        }
-
-        .auth-btn {
-          width: 100%;
-          text-align: center;
-        }
-      }
-
-      .user-profile {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .profile-btn {
-        color: #2e7d32;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-
-      .logout-btn {
-        background: none;
-        border: 1px solid #dc3545;
-        color: #dc3545;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-
-      .logout-btn:hover {
-        background: #dc3545;
-        color: white;
-      }
-
-      @media (max-width: 768px) {
-        .user-profile {
-          flex-direction: column;
-          width: 100%;
-        }
-
-        .profile-btn,
-        .logout-btn {
-          width: 100%;
-          justify-content: center;
-          padding: 8px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <!-- ... existing code ... -->
-      <div class="logo-container">
-        <img
-          src="assets/images/logo.png"
-          alt="Fresh Market Logo"
-          style="width: 40px; height: 40px; object-fit: contain"
-        />
-        <div class="logo">Fresh Market</div>
+  <section class="features">
+    <div class="section-title">
+      <h2>Mengapa Memilih Kami?</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <img src="https://img.icons8.com/fluency/48/organic-food.png" alt="Organik" />
+        <h3>100% Organik</h3>
+        <p>Produk kami bebas pestisida dan ramah lingkungan.</p>
       </div>
-      <!-- ... existing code ... -->
-
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Cari sayuran..." />
-        <button type="button" id="search-button">
-          <i class="fas fa-search"></i>
-        </button>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/color/96/000000/guarantee.png" alt="Petani" />
+        <h3>Dari Petani Lokal</h3>
+        <p>Langsung dari petani untuk menjaga kesegaran dan mendukung ekonomi lokal.</p>
       </div>
-
-      <div class="nav-links">
-        <a href="/" class="nav-link">Beranda</a>
-        <a href="/products" class="nav-link">Produk</a>
-        <a href="/about" class="nav-link">Tentang Kami</a>
-        <a href="/contact" class="nav-link">Kontak</a>
-        <a href="/cart" class="cart-link">
-          <i class="fas fa-shopping-cart"></i>
-          Keranjang <span class="cart-count">0</span>
-        </a>
-        <div class="auth-buttons">
-          <a href="/login" class="auth-btn login">Masuk</a>
-          <a href="/register" class="auth-btn register">Daftar</a>
-        </div>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/fluency/48/delivery.png" alt="Cepat" />
+        <h3>Pengiriman Cepat</h3>
+        <p>Pesanan diantar cepat dan aman hingga ke rumah Anda.</p>
       </div>
-    </nav>
+    </div>
+  </section>
 
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Sayuran Segar Langsung dari Petani ke Meja Anda</h1>
-        <p>
-          Nikmati kesegaran sayuran organik berkualitas tinggi yang dipetik
-          langsung dari kebun kami.
-        </p>
-        <a href="/products" class="cta-btn primary">Belanja Sekarang</a>
-        <a href="/products" class="cta-btn secondary">Lihat Produk</a>
-      </div>
-    </section>
 
-    <section class="features">
-      <div class="section-title">
-        <h2>Mengapa Memilih Kami?</h2>
-        <p>Keunggulan berbelanja di freshmarket.id</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <img
-            src="https://img.icons8.com/color/96/000000/organic-food.png"
-            alt="Organik"
-          />
-          <h3>100% Segar</h3>
-          <p>Sayuran kami ditanam tanpa pestisida dan bahan kimia berbahaya</p>
-        </div>
-        <div class="feature-card">
-          <img
-            src="https://img.icons8.com/color/96/000000/delivery--v2.png"
-            alt="Pengiriman"
-          />
-          <h3>Pengiriman Cepat</h3>
-          <p>Diantar dalam 24 jam untuk menjaga kesegaran sayuran</p>
-        </div>
-        <div class="feature-card">
-          <img
-            src="https://img.icons8.com/color/96/000000/guarantee.png"
-            alt="Kualitas"
-          />
-          <h3>Jaminan Kualitas</h3>
-          <p>Garansi uang kembali jika kualitas tidak sesuai</p>
-        </div>
-      </div>
-    </section>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
 
-    <script src="/js/init.js"></script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+    const authButtons = document.querySelector(".auth-buttons");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Menangani tombol CTA (Call to Action)
-        const ctaButtons = document.querySelectorAll(".cta-btn");
-        ctaButtons.forEach((button) => {
-          button.addEventListener("click", function (e) {
-            const href = this.getAttribute("href");
-            if (href) {
-              window.location.href = href;
-            }
+    if (user) {
+  // Desktop navbar
+  if (authButtons) {
+    authButtons.innerHTML = `
+      <span style="font-weight:600; color:#2e7d32;">Halo, ${user.name}</span>
+      <a href="#" onclick="logout()" style="margin-left: 10px; color: red;">Keluar</a>
+    `;
+  }
+
+  // Mobile menu lengkap
+  if (mobileMenu) {
+    mobileMenu.innerHTML = `
+      <a href="/">Beranda</a>
+      <a href="/products">Produk</a>
+      <a href="/about">Tentang Kami</a>
+      <a href="/contact">Kontak</a>
+      <a href="/cart" class="cart-link">
+        <i class="fas fa-shopping-cart"></i> Keranjang <span class="cart-count">0</span>
+      </a>
+      <span style="text-align:center; font-weight:600; color:#2e7d32;">Halo, ${user.name}</span>
+      <a href="/pages/admin" onclick="logout()" style="color:red;">Keluar</a>
+    `;
+  }
+}
+
+      class ShoppingCart {
+        constructor() {
+          this.items = JSON.parse(localStorage.getItem("cart")) || [];
+          this.updateCartCount();
+        }
+
+        updateCartCount() {
+          const cartCountElements = document.querySelectorAll(".cart-count");
+          const totalItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
+          cartCountElements.forEach((element) => {
+            element.textContent = totalItems;
           });
-        });
+        }
 
-        // Menangani tombol search
-        const searchButton = document.getElementById("search-button");
-        const searchInput = document.getElementById("search-input");
-
-        searchButton.addEventListener("click", function () {
-          const searchTerm = searchInput.value.trim();
-          if (searchTerm) {
-            window.location.href = `products?search=${encodeURIComponent(
-              searchTerm
-            )}`;
+        addItem(product) {
+          const existingItem = this.items.find(item => item.name === product.name);
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            this.items.push({ ...product, quantity: 1 });
           }
-        });
+          this.saveToLocalStorage();
+          this.updateCartCount();
+        }
 
-        // Menambahkan efek parallax pada hero section
-        window.addEventListener("scroll", function () {
-          const hero = document.querySelector(".hero");
-          const scrolled = window.pageYOffset;
-          hero.style.backgroundPositionY = -(scrolled * 0.5) + "px";
-        });
-
-        // Cek apakah user sudah login
-        checkLoginStatus();
-      });
-
-      // Fungsi logout
-      function logout() {
-        localStorage.removeItem("user");
-        window.location.reload();
-      }
-
-      // Update autentikasi dan navigasi
-      function checkLoginStatus() {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const authButtons = document.querySelector(".auth-buttons");
-
-        if (!authButtons) return;
-
-        if (user) {
-          // Update tampilan sesuai role
-          authButtons.innerHTML = `
-                <div class="user-profile">
-                    <a href="${
-                      user.isAdmin
-                        ? "pages/admin/dashboard"
-                        : "pages/user/dashboard"
-                    }" class="dashboard-btn">
-                        <i class="fas fa-user-circle"></i>
-                        <span>${user.name}</span>
-                    </a>
-                    <a href="user/cart" class="cart-btn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="cartCount">0</span>
-                    </a>
-                    <button onclick="logout()" class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </div>
-            `;
-
-          // Update jumlah keranjang
-          updateCartCount();
-        } else {
-          authButtons.innerHTML = `
-                <a href="/login" class="auth-btn login">Masuk</a>
-                <a href="/register" class="auth-btn register">Daftar</a>
-            `;
+        saveToLocalStorage() {
+          localStorage.setItem("cart", JSON.stringify(this.items));
         }
       }
 
-      // Fungsi untuk update jumlah item di keranjang
-      function updateCartCount() {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (!user) return;
-
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const userCart = cart.filter((item) => item.userId === user.email);
-
-        const cartCount = document.getElementById("cartCount");
-        if (cartCount) {
-          cartCount.textContent = userCart.length;
-        }
-      }
-    </script>
-  </body>
+      new ShoppingCart(); // Inisialisasi saat halaman dimuat
+    });
+    
+    
+  function logout() {
+    localStorage.removeItem("user");
+    window.location.reload();
+  }
+  </script>
+</body>
 </html>

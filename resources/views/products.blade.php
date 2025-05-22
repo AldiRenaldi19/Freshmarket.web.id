@@ -417,7 +417,8 @@
 
         <div class="product-card" data-category="Sayuran Buah">
           <img
-            src="https://images.unsplash.com/photo-1635364373425-755835e10d7d"
+             src="https://plus.unsplash.com/premium_photo-1693266782255-10ae7abbd98d?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+       
             alt="Terong Ungu"
           />
           <h3 class="product-name">Terong Ungu</h3>
@@ -452,7 +453,7 @@
         <!-- Bumbu Dapur -->
         <div class="product-card" data-category="Bumbu Dapur">
           <img
-            src="https://images.unsplash.com/photo-1615477550927-6e7ada23e338"
+            src="https://images.unsplash.com/photo-1639172486437-28d0e1ce6493?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Bawang Merah"
           />
           <h3 class="product-name">Bawang Merah</h3>
@@ -463,7 +464,7 @@
 
         <div class="product-card" data-category="Bumbu Dapur">
           <img
-            src="https://images.unsplash.com/photo-1615478503562-ec2d8aa0e24e"
+            src="https://plus.unsplash.com/premium_photo-1675731118463-c475c5508b80?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Bawang Putih"
           />
           <h3 class="product-name">Bawang Putih</h3>
@@ -474,7 +475,7 @@
 
         <div class="product-card" data-category="Bumbu Dapur">
           <img
-            src="https://images.unsplash.com/photo-1615478503562-ec2d8aa0e24e"
+            src="https://images.unsplash.com/photo-1610450622221-90387799d7f5?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Jahe"
           />
           <h3 class="product-name">Jahe Merah</h3>
@@ -507,102 +508,145 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Implementasi Shopping Cart
-        class ShoppingCart {
-          constructor() {
-            this.items = JSON.parse(localStorage.getItem("cart")) || [];
-            this.total = 0;
-            this.updateCartCount();
-          }
+  document.addEventListener("DOMContentLoaded", function () {
+    // Implementasi Shopping Cart
+    class ShoppingCart {
+      constructor() {
+        this.items = JSON.parse(localStorage.getItem("cart")) || [];
+        this.total = 0;
+        this.updateCartCount();
+      }
 
-          addItem(product) {
-            const existingItem = this.items.find(
-              (item) => item.name === product.name
-            );
+      addItem(product) {
+        const existingItem = this.items.find(
+          (item) => item.name === product.name
+        );
 
-            if (existingItem) {
-              existingItem.quantity += 1;
-            } else {
-              this.items.push({
-                name: product.name,
-                price: product.price,
-                quantity: 1,
-              });
-            }
-
-            this.saveToLocalStorage();
-            this.updateCartCount();
-            return true;
-          }
-
-          updateCartCount() {
-            const cartCountElements = document.querySelectorAll(".cart-count");
-            const totalItems = this.items.reduce(
-              (sum, item) => sum + item.quantity,
-              0
-            );
-            cartCountElements.forEach((element) => {
-              element.textContent = totalItems;
-            });
-          }
-
-          saveToLocalStorage() {
-            localStorage.setItem("cart", JSON.stringify(this.items));
-          }
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          this.items.push({
+            name: product.name,
+            price: product.price,
+            image: product.image, // Menyimpan gambar produk
+            quantity: 1,
+          });
         }
 
-        // Inisialisasi keranjang
-        const cart = new ShoppingCart();
+        this.saveToLocalStorage();
+        this.updateCartCount();
+        return true;
+      }
 
-        // Menangani tombol "Tambah ke Keranjang"
-        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+      updateCartCount() {
+        const cartCountElements = document.querySelectorAll(".cart-count");
+        const totalItems = this.items.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
+        cartCountElements.forEach((element) => {
+          element.textContent = totalItems;
+        });
+      }
 
-        addToCartButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const productCard = this.closest(".product-card");
-            const productName =
-              productCard.querySelector(".product-name").textContent;
-            const productPrice =
-              productCard.querySelector(".product-price").textContent;
-            const price = parseInt(productPrice.replace(/\D/g, "")); // Mengambil angka saja dari harga
+      saveToLocalStorage() {
+        localStorage.setItem("cart", JSON.stringify(this.items));
+      }
 
-            const product = {
-              name: productName,
-              price: price,
-            };
+      updateCart() {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const subtotalElement = document.getElementById("cart-subtotal");
+        const totalElement = document.getElementById("cart-total");
 
-            if (cart.addItem(product)) {
-              // Tampilkan notifikasi sukses
-              alert(`${productName} berhasil ditambahkan ke keranjang!`);
-            }
-          });
+        cartItemsContainer.innerHTML = "";
+        let subtotal = 0;
+
+        this.items.forEach((item) => {
+          subtotal += item.price * item.quantity;
+          cartItemsContainer.innerHTML += `
+            <div class="cart-item">
+              <div class="cart-item-details">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image" />
+                <div>
+                  <h3>${item.name}</h3>
+                  <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('${item.name}')" class="quantity-btn">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button onclick="increaseQuantity('${item.name}')" class="quantity-btn">+</button>
+                  </div>
+                  <p>Rp ${item.price.toLocaleString()} x ${item.quantity}</p>
+                  <p>Total: Rp ${(item.price * item.quantity).toLocaleString()}</p>
+                </div>
+              </div>
+              <button onclick="removeItem('${item.name}')" class="remove-btn">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
+            </div>
+          `;
         });
 
-        // Filter produk
-        const filterButtons = document.querySelectorAll(".filter-btn");
+        subtotalElement.textContent = `Rp ${subtotal.toLocaleString()}`;
+        totalElement.textContent = `Rp ${(subtotal + 10000).toLocaleString()}`;
+      }
+    }
 
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            this.classList.add("active");
+    // Inisialisasi keranjang
+    const cart = new ShoppingCart();
 
-            const category = this.textContent;
-            const products = document.querySelectorAll(".product-card");
+    // Menangani tombol "Tambah ke Keranjang"
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
 
-            products.forEach((product) => {
-              if (
-                category === "Semua" ||
-                product.dataset.category === category
-              ) {
-                product.style.display = "block";
-              } else {
-                product.style.display = "none";
-              }
-            });
-          });
-        });
+    addToCartButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const productCard = this.closest(".product-card");
+        const productName = productCard.querySelector(".product-name").textContent;
+        const productPrice = productCard.querySelector(".product-price").textContent;
+        const productImage = productCard.querySelector("img").src;  // Mengambil URL gambar produk
+        const price = parseInt(productPrice.replace(/\D/g, "")); // Mengambil angka saja dari harga
+
+        const product = {
+          name: productName,
+          price: price,
+          image: productImage,  // Menambahkan gambar produk
+        };
+
+        if (cart.addItem(product)) {
+          // Tampilkan notifikasi sukses
+          alert(`${productName} berhasil ditambahkan ke keranjang!`);
+        }
       });
-    </script>
+    });
+
+    // Fungsi untuk menambah/kurangi quantity
+    window.increaseQuantity = function (productName) {
+      const item = cart.items.find((item) => item.name === productName);
+      if (item) {
+        item.quantity += 1;
+        cart.saveToLocalStorage();
+        cart.updateCart();
+      }
+    };
+
+    window.decreaseQuantity = function (productName) {
+      const item = cart.items.find((item) => item.name === productName);
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+        cart.saveToLocalStorage();
+        cart.updateCart();
+      } else if (item && item.quantity === 1) {
+        cart.removeItem(productName);
+      }
+    };
+
+    window.removeItem = function (productName) {
+      cart.removeItem(productName);
+    };
+
+    // Memperbarui keranjang setelah halaman dimuat
+    cart.updateCart();
+  });
+</script>
+
+    
   </body>
 </html>
