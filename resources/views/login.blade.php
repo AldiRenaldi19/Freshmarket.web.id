@@ -163,7 +163,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user) {
-        window.location.href = user.isAdmin ? "/" : "../dasboard";
+        window.location.href = user.isAdmin ? "../admin/dasboard" : "../dasboard";
         return;
       }
 
@@ -197,7 +197,7 @@
               isAdmin: true,
               lastLogin: new Date().toISOString(),
             }));
-            window.location.href = "/";
+            window.location.href = "../pages/admin/dasboard";
             return;
           }
 

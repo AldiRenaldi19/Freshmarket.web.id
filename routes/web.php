@@ -49,7 +49,7 @@ Route::get('/checkout', function () {
 
 // Route for admin pages
 Route::get('pages/admin/dashboard', function () {
-    return view('pages.admin.dashboard');
+    return view('pages.admin.dasboard');
 });
 Route::get('pages/admin/products', function () {
     return view('pages.admin.products');
@@ -67,7 +67,7 @@ Route::get('pages/admin/reports', function () {
 
 // Route for user pages
 Route::get('pages/user/dashboard', function () {
-    return view('pages.user.dashboard');
+    return view('pages.user.dasboard');
 });
 Route::get('pages/user/products', function () {
     return view('pages.user.products');
