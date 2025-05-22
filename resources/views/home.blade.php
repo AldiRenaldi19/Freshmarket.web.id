@@ -235,7 +235,9 @@
     </div>
 
     <div class="hamburger" onclick="toggleMobileMenu()">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </nav>
 
@@ -301,7 +303,7 @@
   if (authButtons) {
     authButtons.innerHTML = `
       <span style="font-weight:600; color:#2e7d32;">Halo, ${user.name}</span>
-      <a href="#" onclick="logout()" style="margin-left: 10px; color: red;">Keluar</a>
+      <a href="/" onclick="logout()" style="margin-left: 10px; color: red;">Keluar</a>
     `;
   }
 
@@ -316,7 +318,7 @@
         <i class="fas fa-shopping-cart"></i> Keranjang <span class="cart-count">0</span>
       </a>
       <span style="text-align:center; font-weight:600; color:#2e7d32;">Halo, ${user.name}</span>
-      <a href="/pages/admin" onclick="logout()" style="color:red;">Keluar</a>
+      <a href="/" onclick="logout()" style="color:red;">Keluar</a>
     `;
   }
 }

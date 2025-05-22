@@ -163,7 +163,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user) {
-        window.location.href = user.isAdmin ? "../admin/dashboard" : "/dasboard";
+        window.location.href = user.isAdmin ? "/" : "../dasboard";
         return;
       }
 
@@ -197,7 +197,7 @@
               isAdmin: true,
               lastLogin: new Date().toISOString(),
             }));
-            window.location.href = "/pages/admin/dashboard";
+            window.location.href = "/";
             return;
           }
 
@@ -245,9 +245,9 @@
         expiresAt: new Date().getTime() + 24 * 60 * 60 * 1000,
       }));
       if (user.isAdmin) {
-        window.location.href = "pages/admin/dashboard";
+        window.location.href = "/";
       } else {
-        window.location.href = "pages/user/dashboard";
+        window.location.href = "/";
       }
     }
 
