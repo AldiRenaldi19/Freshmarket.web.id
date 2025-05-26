@@ -146,7 +146,7 @@
             // Di sini nanti bisa ditambahkan integrasi dengan backend
             alert("Pesanan berhasil! Terima kasih telah berbelanja.");
             localStorage.removeItem("cart"); // Kosongkan keranjang
-            window.location.href = "order-success.html"; // Redirect ke halaman sukses
+            window.location.href = "/order-success"; // Redirect ke halaman sukses
           } catch (error) {
             alert("Terjadi kesalahan. Silakan coba lagi.");
           }

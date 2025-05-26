@@ -43,8 +43,9 @@ Route::get('/products', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 });
-
-
+Route::get('/order-succes', function () {
+    return view('order-success');
+});
 // Route for admin pages
 Route::get('pages/admin/dasboard', function () {
     return view('pages.admin.dasboard');
