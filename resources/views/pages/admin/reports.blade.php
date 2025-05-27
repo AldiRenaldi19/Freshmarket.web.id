@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        <div class="report-container">
+        < class="report-container">
           <div class="report-section">
             <h2>Grafik Penjualan</h2>
             <canvas id="salesChart"></canvas>
@@ -112,6 +112,10 @@
               <i class="fas fa-download"></i> Export ke Excel
             </button>
           </div>
+          <div class="report-actions">
+            <button onclick="exportToPdf()" class="export-btn">
+              <i class="fas fa-file-pdf"></i> Export ke PDF
+            </button>
         </div>
       </div>
     </div>
@@ -288,6 +292,32 @@
         window.location.href = "/login";
       }
 
+      function exportToPdf() {
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+
+        // Buat data untuk PDF
+        let pdfContent = "Tanggal,ID Pesanan,Produk,Jumlah,Harga,Total\n";
+
+        orders.forEach((order) => {
+          order.items.forEach((item) => {
+            const product = products.find((p) => p.id === item.productId);
+            pdfContent += `${order.date},${order.id},${product.name},${
+              item.quantity
+            },${item.price},${item.quantity * item.price}\n`;
+          });
+        });
+
+        // Download file PDF
+        const blob = new Blob([pdfContent], { type: "text/csv" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "laporan_penjualan.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
       function exportToExcel() {
         const orders = JSON.parse(localStorage.getItem("orders")) || [];
         const products = JSON.parse(localStorage.getItem("products")) || [];
@@ -313,6 +343,7 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        
       }
     </script>
 
