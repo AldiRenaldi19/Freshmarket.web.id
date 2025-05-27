@@ -143,10 +143,24 @@
           };
 
           try {
+            const response = await fetch("/api/checkout", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const result = await response.json();
+            if (result.error) {
+              throw new Error(result.error);
+            }
             // Di sini nanti bisa ditambahkan integrasi dengan backend
             alert("Pesanan berhasil! Terima kasih telah berbelanja.");
             localStorage.removeItem("cart"); // Kosongkan keranjang
-            window.location.href = "/order-success"; // Redirect ke halaman sukses
+            window.location.href = "/order-redirect"; // Redirect ke halaman sukses
           } catch (error) {
             alert("Terjadi kesalahan. Silakan coba lagi.");
           }

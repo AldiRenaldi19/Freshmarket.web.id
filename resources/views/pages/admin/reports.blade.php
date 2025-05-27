@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        < class="report-container">
+        <div class="report-container">
           <div class="report-section">
             <h2>Grafik Penjualan</h2>
             <canvas id="salesChart"></canvas>

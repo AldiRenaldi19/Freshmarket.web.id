@@ -65,9 +65,8 @@
     <div class="container" role="main">
         <h1>Pesanan Berhasil!</h1>
         <p>Terima kasih sudah melakukan pemesanan. Pesanan Anda telah kami terima dan sedang diproses.</p>
-        <a href="{{ url('/') }}" class="btn" aria-label="Kembali ke Beranda">Kembali ke Beranda</a>
-        <a href="{{ url('/checkout') }}" class="btn" aria-label="Lihat Pesanan Saya">Lihat Pesanan Saya</a>
+        <a href="/" class="btn" aria-label="Kembali ke Beranda">Kembali ke Beranda</a>
+        <a href="/checkout" class="btn" aria-label="Lihat Pesanan Saya">Lihat Pesanan Saya</a>
     </div>
 </body>
 </html>
-
