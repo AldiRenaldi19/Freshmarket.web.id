@@ -150,13 +150,6 @@
               },
               body: JSON.stringify(formData),
             });
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            const result = await response.json();
-            if (result.error) {
-              throw new Error(result.error);
-            }
             // Di sini nanti bisa ditambahkan integrasi dengan backend
             alert("Pesanan berhasil! Terima kasih telah berbelanja.");
             localStorage.removeItem("cart"); // Kosongkan keranjang
