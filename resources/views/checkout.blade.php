@@ -13,6 +13,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-Kgu7VyxW4EMJsPZf"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
   </head>
   <body>
     <div class="checkout-container">
@@ -118,9 +121,7 @@
           });
 
           subtotalElement.textContent = `Rp ${subtotal.toLocaleString()}`;
-          totalElement.textContent = `Rp ${(
-            subtotal + 10000
-          ).toLocaleString()}`;
+          totalElement.textContent = `Rp ${(subtotal + 10000).toLocaleString()}`;
         }
 
         displayCheckoutItems();
@@ -135,25 +136,46 @@
             phone: document.getElementById("phone").value,
             email: document.getElementById("email").value,
             address: document.getElementById("address").value,
-            paymentMethod: document.querySelector(
-              'input[name="payment"]:checked'
-            ).value,
             items: cartItems,
             total: parseFloat(totalElement.textContent.replace(/[^\d]/g, "")),
           };
 
           try {
+            // Ambil CSRF token dari meta tag
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+            // Kirim data ke server untuk memproses pembayaran
+            if (!csrfToken) {
+              alert("CSRF token tidak ditemukan. Pastikan halaman dimuat dengan benar.");
+              return;
+            }
             const response = await fetch("/api/checkout", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
               },
               body: JSON.stringify(formData),
             });
-            // Di sini nanti bisa ditambahkan integrasi dengan backend
-            alert("Pesanan berhasil! Terima kasih telah berbelanja.");
-            localStorage.removeItem("cart"); // Kosongkan keranjang
-            window.location.href = "/order-redirect"; // Redirect ke halaman sukses
+            console.log(data);
+            if (data.snapToken) {
+              // Panggil Midtrans Snap
+              window.snap.pay(data.snapToken, {
+                onSuccess: function (result) {
+                  alert("Pembayaran berhasil!");
+                  localStorage.removeItem("cart"); // Kosongkan keranjang
+                  window.location.href = "/order-redirect"; // Redirect ke halaman sukses
+                },
+                onPending: function (result) {
+                  alert("Pembayaran sedang diproses.");
+                },
+                onError: function (result) {
+                  alert("Pembayaran gagal.");
+                },
+                onClose: function () {
+                  alert("Pembayaran dibatalkan.");
+                }
+              });
+            }
           } catch (error) {
             alert("Terjadi kesalahan. Silakan coba lagi.");
           }

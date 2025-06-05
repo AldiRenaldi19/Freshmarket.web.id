@@ -23,6 +23,26 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     localStorage.setItem("users", JSON.stringify([defaultUser]));
   }
+  //Inisialisasi data admin baru daftar
+  if (!localStorage.getItem("newAdmins")) {
+    localStorage.setItem("newAdmins", JSON.stringify([]));
+  }
+  // Inisialisasi data admin yang sudah terdaftar
+  if (!localStorage.getItem("registeredAdmins")) {
+    localStorage.setItem("registeredAdmins", JSON.stringify([]));
+  }
+  // Inisialisasi data user baru daftar
+  if (!localStorage.getItem("newUsers")) {
+    localStorage.setItem("newUsers", JSON.stringify([]));
+  }
+  // Inisialisasi data user yang sudah login
+  if (!localStorage.getItem("loggedInUser")) {
+    localStorage.setItem("loggedInUser", JSON.stringify(null));
+  }
+  // Inisialisasi data user yang sudah terdaftar
+  if (!localStorage.getItem("registeredUsers")) {
+    localStorage.setItem("registeredUsers", JSON.stringify([]));
+  }
   // Inisialisasi data cart jika belum ada
   if (!localStorage.getItem("cart")) {
     localStorage.setItem("cart", JSON.stringify([]));
@@ -48,7 +68,54 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!localStorage.getItem("orders")) {
     localStorage.setItem("orders", JSON.stringify([]));
   }
-
+  // Inisialisasi data categories jika belum ada
+  if (!localStorage.getItem("categories")) {
+    const defaultCategories = [
+      {
+        id: "C001",
+        name: "Sayuran",
+        description: "Sayuran segar dan organik",
+        image: "../../assets/images/categories/sayuran.jpg",
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: "C002",
+        name: "Buah",
+        description: "Buah-buahan segar dan berkualitas",
+        image: "../../assets/images/categories/buah.jpg",
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: "C003",
+        name: "Rempah",
+        description: "Rempah-rempah berkualitas tinggi",
+        image: "../../assets/images/categories/rempah.jpg",
+        createdAt: new Date().toISOString(),
+      },
+    ];
+    localStorage.setItem("categories", JSON.stringify(defaultCategories));
+  }
+  // Inisialisasi database jika belum ada
+  if (!localStorage.getItem("database")) {
+    const defaultDatabase = {
+      users: [],
+      products: [],
+      categories: [],
+      orders: [],
+      transactions: [],
+      reviews: [],
+      notifications: [],
+      activities: [],
+      cart: [],
+      wishlist: [],
+      registeredUsers: [],
+      registeredAdmins: [],
+      newUsers: [],
+      newAdmins: [],
+      loggedInUser: null,
+    };
+    localStorage.setItem("database", JSON.stringify(defaultDatabase));
+  }
   // Inisialisasi data products jika belum ada
   if (!localStorage.getItem("products")) {
     const defaultProducts = [

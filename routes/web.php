@@ -3,8 +3,83 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CheckoutController;
 
+// Route for checkout 
+Route::post('/api/checkout', [CheckoutController::class, 'checkout']);
+// route midtrans token
+Route::get('/api/snap/token', [CheckoutController::class, 'getSnapToken'])->name('snap.token');
 
+// Middleware to ensure user is authenticated
+Route::middleware(['auth'])->group(function () {
+    // Protected routes for authenticated users
+    Route::get('/dasboard', function () {
+        return view('pages.user.dasboard');
+    })->name('user.dasboard');
+    Route::get('/products', function () {
+        return view('pages.user.products');
+    })->name('user.products');
+    Route::get('/orders', function () {
+        return view('pages.user.orders');
+    })->name('user.orders');
+    Route::get('/profile', function () {
+        return view('pages.user.profile');
+    })->name('user.profile');
+    Route::get('/address', function () {
+        return view('pages.user.address');
+    })->name('user.address');
+    Route::get('/wishlist', function () {
+        return view('pages.user.wishlist');
+    })->name('user.wishlist');
+});
+// Middleware to ensure user is an admin
+Route::middleware(['auth', 'admin'])->group(function () {
+    // Protected routes for admin users
+    Route::get('/admin/dasboard', function () {
+        return view('pages.admin.dasboard');
+    })->name('admin.dasboard');
+    Route::get('/admin/products', function () {
+        return view('pages.admin.products');
+    })->name('admin.products');
+    Route::get('/admin/orders', function () {
+        return view('pages.admin.orders');
+    })->name('admin.orders');
+    Route::get('/admin/users', function () {
+        return view('pages.admin.users');
+    })->name('admin.users');
+    Route::get('/admin/reports', function () {
+        return view('pages.admin.reports');
+    })->name('admin.reports');
+});
+
+// Middleware to check if user is authenticated
+Route::middleware(['auth'])->group(function () {
+    // Protected routes for authenticated users
+    Route::get('/dasboard', function () {
+        return view('pages.user.dasboard');
+    })->name('user.dasboard');
+});
+// Middleware to check if user is an admin
+Route::middleware(['auth', 'admin'])->group(function () {
+    // Protected routes for admin users
+    Route::get('/admin/dasboard', function () {
+        return view('pages.admin.dasboard');
+    })->name('admin.dasboard');
+    Route::get('/admin/products', function () {
+        return view('pages.admin.products');
+    })->name('admin.products');
+    Route::get('/admin/orders', function () {
+        return view('pages.admin.orders');
+    })->name('admin.orders');
+    Route::get('/admin/users', function () {
+        return view('pages.admin.users');
+    })->name('admin.users');
+    Route::get('/admin/reports', function () {
+        return view('pages.admin.reports');
+    })->name('admin.reports');
+});
+
+// 
 // Route for authentication
 Route::view('/login', 'login')->name('login');
 
@@ -52,7 +127,6 @@ Route::post('/checkout', function (Request $request) {
     // For this example, we'll just return a success message
     return response()->json(['message' => 'Order placed successfully!'], 200);
 })->name('do.checkout');
-
 // Router For pages
 Route::get('/', function () {
     return view('home');
@@ -74,9 +148,6 @@ Route::get('/products', function () {
 });
 Route::get('/checkout', function () {
     return view('checkout');
-});
-Route::get('/order-succes', function () {
-    return view('order-success');
 });
 Route::get('/order-redirect', function () {
     return view('order-redirect');
