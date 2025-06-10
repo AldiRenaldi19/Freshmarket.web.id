@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-Kgu7VyxW4EMJsPZf"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/v1/transactions" data-client-key="SB-Mid-client-Kgu7VyxW4EMJsPZf"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
   </head>
@@ -144,10 +144,7 @@
             // Ambil CSRF token dari meta tag
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
             // Kirim data ke server untuk memproses pembayaran
-            if (!csrfToken) {
-              alert("CSRF token tidak ditemukan. Pastikan halaman dimuat dengan benar.");
-              return;
-            }
+            // Lakukan permintaan POST ke endpoint checkout
             const response = await fetch("/api/checkout", {
               method: "POST",
               headers: {
@@ -156,6 +153,8 @@
               },
               body: JSON.stringify(formData),
             });
+            
+            
             console.log(data);
             if (data.snapToken) {
               // Panggil Midtrans Snap

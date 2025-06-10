@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CheckoutController;
 
 // Route for checkout 
-Route::post('/api/checkout', [CheckoutController::class, 'checkout']);
-// route midtrans token
-Route::get('/api/snap/token', [CheckoutController::class, 'getSnapToken'])->name('snap.token');
-
+Route::post('/checkout', [CheckoutController::class, 'checkout']);
+// Route for checkout token
+Route::post('/api/checkout-token', [CheckoutController::class, 'checkoutToken'])->name('checkout.token');
+// Route for checkout status
+Route::get('/api/checkout-status', [CheckoutController::class, 'checkoutStatus'])->name('checkout.status');
+// Route for checkout finish
+Route::get('/api/checkout-finish', [CheckoutController::class, 'checkoutFinish'])->name('checkout.finish');
+// Route for order redirect
+Route::get('/api/order-redirect', [CheckoutController::class, 'orderRedirect'])->name('order.redirect');
 // Middleware to ensure user is authenticated
 Route::middleware(['auth'])->group(function () {
     // Protected routes for authenticated users

@@ -66,7 +66,7 @@ function getLoginPath() {
   if (currentPath.includes("/pages/admin")) {
     return "/login";
   }
-  return currentPath.includes("/pages/user/") ? "/login" : "/login";
+  return currentPath.includes("/pages/user") ? "/login" : "/login";
 }
 
 // Fungsi untuk mengecek akses admin
